@@ -27,15 +27,15 @@ namespace DarwinStebs
 			int p = 0x00;
 
 			//set AL to 3B
-			mem.Write (p++, (int)Opcode.MOVRegConst);
+			mem.Write (p++, 0xD0);
 			mem.Write (p++, 0x00);
 			mem.Write (p++, 0x3b);
 
 			//write AL to 30 in memory
-			mem.Write (p++, (int)Opcode.MOVAddrReg);
+			mem.Write (p++, 0xD2);
 			mem.Write (p++, 0x30);
 			mem.Write (p++, 0x00);
-			mem.Write (p++, (int)Opcode.END);
+			mem.Write (p++, 0x00);
 
 			//run cpu
 			cpu.Run ();

@@ -2,7 +2,7 @@
 
 namespace DarwinStebs
 {
-	public enum OpcodeParamType
+	public enum ASMParameterType
 	{
 		Register,
 		Address,

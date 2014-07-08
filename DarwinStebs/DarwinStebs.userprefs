@@ -1,18 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DarwinStebs/Stebs/AssemblyCommand.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DarwinStebs/Stebs/Opcodes/DecoderTable.cs">
     <Files>
-      <File FileName="DarwinStebs/Program.cs" Line="32" Column="26" />
-      <File FileName="DarwinStebs/Stebs/AssemblyCommand.cs" Line="13" Column="4" />
+      <File FileName="DarwinStebs/Program.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/AssemblyCommand.cs" Line="1" Column="1" />
       <File FileName="DarwinStebs/Stebs/Memory.cs" Line="1" Column="1" />
-      <File FileName="DarwinStebs/Stebs/CentralProcessingUnit.cs" Line="22" Column="49" />
+      <File FileName="DarwinStebs/Stebs/CentralProcessingUnit.cs" Line="1" Column="1" />
       <File FileName="DarwinStebs/Extensions/Util.cs" Line="1" Column="1" />
       <File FileName="DarwinStebs/Stebs/Register.cs" Line="1" Column="1" />
-      <File FileName="DarwinStebs/Stebs/StebsCompiler.cs" Line="18" Column="4" />
-      <File FileName="DarwinStebs/Stebs/CommandMatch.cs" Line="19" Column="3" />
-      <File FileName="DarwinStebs/Stebs/Opcodes/Opcode.cs" Line="20" Column="15" />
-      <File FileName="DarwinStebs/Stebs/Opcodes/OpcodeParamAttribute.cs" Line="7" Column="3" />
-      <File FileName="DarwinStebs/Stebs/Opcodes/OpcodeParamType.cs" Line="9" Column="11" />
+      <File FileName="DarwinStebs/Stebs/StebsCompiler.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/CommandMatch.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Opcodes/Opcode.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Opcodes/OpcodeParamAttribute.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Opcodes/ASMParameterType.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Opcodes/ASMOperation.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Opcodes/DecoderTable.cs" Line="14" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

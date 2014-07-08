@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace DarwinStebs
 {
 	public class CentralProcessingUnit
 	{
+		readonly DecoderTable decoder = new DecoderTable();
+
 		public List<Register> RegisterBank { get; set;}
 		public int InstructionPointer { get; set; }
 
-		//public List<AssemblyCommand> InstructionRegister { get; set;}
 		public Memory DefaultMemory { get; set; }
 
 		public CentralProcessingUnit ()
@@ -24,62 +26,44 @@ namespace DarwinStebs
 			RegisterBank.Add (new Register ("SP", 0x04));
 		}
 
-		private Register GetRegister(int address)
+		public Register GetRegister(int address)
 		{
 			return RegisterBank.Single (r => r.Address.Equals (address));
 		}
 
 		public void Run()
 		{
-			while (DefaultMemory.Read (InstructionPointer) != (int)Opcode.END) {
+			while (DefaultMemory.Read (InstructionPointer) != 0x00) {
 				int value = DefaultMemory.Read (InstructionPointer++);
-				int p1, p2;
+				var operation = decoder.GetByOpcode (value);
 
-				switch (value) {
-
-				case (int)Opcode.MOVRegConst:
-					//2 params D0
-					p1 = DefaultMemory.Read (InstructionPointer++);
-					p2 = DefaultMemory.Read (InstructionPointer++);
-					GetRegister (p1).Value = p2;
-					break;
-
-				case (int)Opcode.MOVRegAddr:
-					//2 params D1
-					p1 = DefaultMemory.Read (InstructionPointer++);
-					p2 = DefaultMemory.Read (InstructionPointer++);
-					GetRegister (p1).Value = DefaultMemory.Read (p2);
-					break;
-
-				case (int)Opcode.MOVAddrReg:
-						//2 params D2
-					p1 = DefaultMemory.Read (InstructionPointer++);
-					p2 = DefaultMemory.Read (InstructionPointer++);
-					DefaultMemory.Write (p1, GetRegister (p2).Value);
-					break;
-
-				case (int)Opcode.MOVRegAReg:
-					//2 params D3
-					p1 = DefaultMemory.Read (InstructionPointer++);
-					p2 = DefaultMemory.Read (InstructionPointer++);
-					GetRegister (p1).Value = DefaultMemory.Read (GetRegister (p2).Value);
-					break;
-
-				case (int)Opcode.MOVARegReg:
-					//2 params D4
-					p1 = DefaultMemory.Read (InstructionPointer++);
-					p2 = DefaultMemory.Read (InstructionPointer++);
-					DefaultMemory.Write(GetRegister(p1).Value, GetRegister(p2).Value);
-					break;
-
-				case (int)Opcode.MOVRegReg:
-					//2 params D4
-					p1 = DefaultMemory.Read (InstructionPointer++);
-					p2 = DefaultMemory.Read (InstructionPointer++);
-					GetRegister(p1).Value = GetRegister(p2).Value;
-					break;
-				
+				//dynamic load params
+				/*
+				List<int> parameters = new List<int> ();
+				for (int i = 0; i < operation.Parameter.Count; i++) {
+					parameters.Add (DefaultMemory.Read (InstructionPointer++));
 				}
+				*/
+
+				int param1 = 0, param2 = 0;
+
+				//read params classic
+				if (operation.Parameter.Count > 0) {
+					param1 = DefaultMemory.Read (InstructionPointer++);
+
+					if (operation.Parameter.Count > 1) {
+						param2 = DefaultMemory.Read (InstructionPointer++);
+					}
+				}
+
+
+				Assembly current = Assembly.GetExecutingAssembly ();
+				var type = current.GetTypes ().Single (p => p.Name.Equals (operation.Name));
+
+				//create operation and execute
+				var classe = Activator.CreateInstance (type, new object[]{ this }, null);
+				MethodInfo method = type.GetMethod ("Execute");
+				method.Invoke (classe, new object[]{ operation.OpCode, param1, param2 });
 			}
 		}
 	}
