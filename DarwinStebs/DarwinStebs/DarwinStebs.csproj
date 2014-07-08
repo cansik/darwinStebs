@@ -34,6 +34,16 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stebs\Opcode.cs" />
+    <Compile Include="Stebs\AssemblyCommand.cs" />
+    <Compile Include="Stebs\Memory.cs" />
+    <Compile Include="Stebs\CentralProcessingUnit.cs" />
+    <Compile Include="Extensions\Util.cs" />
+    <Compile Include="Stebs\Register.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Stebs\" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
 </Project>

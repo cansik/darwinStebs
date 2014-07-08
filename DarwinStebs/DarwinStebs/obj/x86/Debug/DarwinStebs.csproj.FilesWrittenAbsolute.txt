@@ -1,0 +1,5 @@
+/Users/cansik/Projects/darwinStebs/DarwinStebs/DarwinStebs/obj/x86/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/Users/cansik/Projects/darwinStebs/DarwinStebs/DarwinStebs/bin/Debug/DarwinStebs.exe.mdb
+/Users/cansik/Projects/darwinStebs/DarwinStebs/DarwinStebs/bin/Debug/DarwinStebs.exe
+/Users/cansik/Projects/darwinStebs/DarwinStebs/DarwinStebs/obj/x86/Debug/DarwinStebs.exe
+/Users/cansik/Projects/darwinStebs/DarwinStebs/DarwinStebs/obj/x86/Debug/DarwinStebs.exe.mdb
