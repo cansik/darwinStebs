@@ -21,6 +21,7 @@ namespace DarwinStebs
 			RegisterBank.Add (new Register ("BL", 0x01));
 			RegisterBank.Add (new Register ("CL", 0x02));
 			RegisterBank.Add (new Register ("DL", 0x03));
+			RegisterBank.Add (new Register ("SP", 0x04));
 		}
 
 		private Register GetRegister(int address)

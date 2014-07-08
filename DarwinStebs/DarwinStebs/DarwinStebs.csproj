@@ -34,16 +34,21 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stebs\Opcode.cs" />
+    <Compile Include="Extensions\Util.cs" />
     <Compile Include="Stebs\AssemblyCommand.cs" />
     <Compile Include="Stebs\Memory.cs" />
     <Compile Include="Stebs\CentralProcessingUnit.cs" />
-    <Compile Include="Extensions\Util.cs" />
     <Compile Include="Stebs\Register.cs" />
+    <Compile Include="Stebs\StebsCompiler.cs" />
+    <Compile Include="Stebs\CommandMatch.cs" />
+    <Compile Include="Stebs\Opcodes\Opcode.cs" />
+    <Compile Include="Stebs\Opcodes\OpcodeParamAttribute.cs" />
+    <Compile Include="Stebs\Opcodes\OpcodeParamType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Stebs\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Stebs\" />
+    <Folder Include="Stebs\Opcodes\" />
   </ItemGroup>
 </Project>

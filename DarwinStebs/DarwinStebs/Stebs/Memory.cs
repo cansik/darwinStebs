@@ -5,7 +5,7 @@ namespace DarwinStebs
 {
 	public class Memory
 	{
-		int[,] data;
+		readonly int[,] data;
 
 		public Memory (int width, int height)
 		{
@@ -36,7 +36,7 @@ namespace DarwinStebs
 		
 			for (int y = 0; y < data.GetLength(0); y++) {
 				for (int x = 0; x < data.GetLength (1); x++) {
-					b.Append (data[x, y].ToString ("X") + "\t");
+					b.Append (data[x, y].ToString ("X2") + " ");
 				}
 				b.AppendLine ();
 			}

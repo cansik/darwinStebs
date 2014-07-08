@@ -6,6 +6,7 @@ namespace DarwinStebs
 	[Flags]
 	public enum Opcode
 	{
+		[Description("MOV")]
 		MOVRegConst = 0xD0,
 		MOVRegAddr = 0xD1,
 		MOVAddrReg = 0xD2,
