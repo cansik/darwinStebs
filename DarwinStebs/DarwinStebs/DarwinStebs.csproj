@@ -51,6 +51,8 @@
     <Compile Include="Stebs\Operations\NOP.cs" />
     <Compile Include="Stebs\Operations\CMP.cs" />
     <Compile Include="Stebs\StatusRegister.cs" />
+    <Compile Include="Stebs\Operations\JNZ.cs" />
+    <Compile Include="Stebs\Operations\JZ.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

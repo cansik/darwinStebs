@@ -5,17 +5,15 @@ namespace DarwinStebs
 {
 	public class Memory
 	{
-		readonly byte[,] data;
+		public byte[,] Data {get; private set;}
 
-		public byte[,] Data{ get { return data; } }
-
-		public Memory() : this(0xF, 0xF)
+		public Memory() : this(0x10, 0x10)
 		{
 		}
 
 		public Memory (byte width, byte height)
 		{
-			data = new byte[width, height];
+			Data = new byte[width, height];
 		}
 
 		public byte Read(byte address)
@@ -24,7 +22,7 @@ namespace DarwinStebs
 			int y = address >> 4;
 			int x = address & 0x0f;
 
-			return data [x, y];
+			return Data [x, y];
 		}
 
 		public void Write(byte address, byte value)
@@ -33,16 +31,16 @@ namespace DarwinStebs
 			int y = address >> 4;
 			int x = address & 0x0f;
 
-			data [x, y] = value;
+			Data [x, y] = value;
 		}
 
 		public override string ToString ()
 		{
 			var b = new StringBuilder ();
 		
-			for (int y = 0; y < data.GetLength(0); y++) {
-				for (int x = 0; x < data.GetLength (1); x++) {
-					b.Append (data[x, y].ToString ("X2") + " ");
+			for (int y = 0; y < Data.GetLength(0); y++) {
+				for (int x = 0; x < Data.GetLength (1); x++) {
+					b.Append (Data[x, y].ToString ("X2") + " ");
 				}
 				b.AppendLine ();
 			}

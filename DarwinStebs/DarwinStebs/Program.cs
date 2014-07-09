@@ -21,15 +21,15 @@ namespace DarwinStebs
 			//set AL to 10
 			mem.Write (p++, 0xD0);
 			mem.Write (p++, 0x00);
-			mem.Write (p++, 0x10);
+			mem.Write (p++, 0xFE);
 
 			//increment AL
 			mem.Write (p++, 0xA4);
 			mem.Write (p++, 0x00);
 
-			//jump back before AL
-			//mem.Write (p++, 0xC0);
-			//mem.Write(p++, 0xFC);
+			//jump back before AL if not ZERO
+			mem.Write (p++, 0xC2);
+			mem.Write (p++, 0xFC);
 
 			//compare AL true
 			mem.Write (p++, 0xDB);
