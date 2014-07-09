@@ -15,7 +15,7 @@ namespace DarwinStebs
 
 		bool IsFlagSet(int flagPosition)
 		{
-			return (Value & (1 << flagPosition-1)) != 0;
+			return (Value & (1 << flagPosition)) != 0;
 		}
 
 		void SetFlag(int flagPosition, bool value)
