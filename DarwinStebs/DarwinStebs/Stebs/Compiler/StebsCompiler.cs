@@ -6,25 +6,26 @@ namespace DarwinStebs
 {
 	public class StebsCompiler
 	{
-		//Regex: ^(?<opcode>\w+)(?:\s+(?<param1>[\w\d\[\]]+))?(?:\s*,\s*(?<param2>[\w\d\[\]]+))?$
-		//Regex Tester: http://derekslager.com/blog/posts/2007/09/a-better-dotnet-regular-expression-tester.ashx
-		readonly Regex sourceRegex = new Regex(@"^(?<opcode>\w+)(?:\s+(?<param1>[\w\d\[\]]+))?(?:\s*,\s*(?<param2>[\w\d\[\]]+))?$");
+		protected DecoderTable decoder = new DecoderTable();
+		public Memory memory { get; set; }
+		char[] delimiters = new [] { ',', ' ' };
 
-		public StebsCompiler ()
+		public StebsCompiler (Memory memory)
 		{
+			this.memory = memory;
 		}
 
-		public List<CommandMatch> Parse(string sourceCode)
+		public Memory Parse(string sourceCode)
 		{
-			var commandMatches = new List<CommandMatch> ();
-			var matches = sourceRegex.Matches (sourceCode);
+			foreach (String line in sourceCode.Split(Environment.NewLine.ToCharArray())) {
+				var commandSequence = line.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
 
-			foreach (Match m in matches) {
-				var cm = new CommandMatch(m.Groups);
-
+				foreach (String sign in commandSequence) {
+					Console.Write (sign);
+				}
 			}
 
-			return commandMatches;
+			return memory;
 		}
 	}
 }

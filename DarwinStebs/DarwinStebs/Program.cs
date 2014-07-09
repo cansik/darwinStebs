@@ -7,10 +7,18 @@ namespace DarwinStebs
 	{
 		public static void Main (string[] args)
 		{
-			Console.Title = "DarwinStebs";
+			StringBuilder asmSourceCode = new StringBuilder ();
+
+			asmSourceCode.AppendLine ("MOV AL,50");
+			asmSourceCode.AppendLine ("MOV AL,50");
+
+			var compilerMemory = new Memory (0xF, 0xF);
+			var compiler = new StebsCompiler (compilerMemory);
+
+			var newMem = compiler.Parse (asmSourceCode.ToString());
 
 			//setup cpu
-			var mem = new Memory ();
+			var mem = new Memory (0xF, 0xF);
 
 			var cpu = new CentralProcessingUnit ();
 			cpu.DefaultMemory = mem;
@@ -21,25 +29,15 @@ namespace DarwinStebs
 			//set AL to 10
 			mem.Write (p++, 0xD0);
 			mem.Write (p++, 0x00);
-			mem.Write (p++, 0xFE);
+			mem.Write (p++, 0x10);
 
 			//increment AL
 			mem.Write (p++, 0xA4);
 			mem.Write (p++, 0x00);
 
-			//jump back before AL if not ZERO
-			mem.Write (p++, 0xC2);
-			mem.Write (p++, 0xFC);
-
-			//compare AL true
-			mem.Write (p++, 0xDB);
-			mem.Write (p++, 0x00);
-			mem.Write (p++, 0x11);
-
-			//compare AL false
-			mem.Write (p++, 0xDB);
-			mem.Write (p++, 0x00);
-			mem.Write (p++, 0x12);
+			//jump back before AL
+			mem.Write (p++, 0xC0);
+			mem.Write(p++, 0xFC);
 
 			//write AL to 30 in memory
 			mem.Write (p++, 0xD2);
@@ -68,6 +66,8 @@ namespace DarwinStebs
 				for (int x = 0; x < cpu.DefaultMemory.Data.GetLength (1); x++) {
 					byte value = cpu.DefaultMemory.Data[x, y];
 
+					Console.ResetColor ();
+
 					if (value == 0x00)
 						Console.ForegroundColor = ConsoleColor.Gray;
 
@@ -80,9 +80,7 @@ namespace DarwinStebs
 						Console.ForegroundColor = ConsoleColor.White;
 					}
 
-					Console.Write(cpu.DefaultMemory.Data[x, y].ToString ("X2"));
-					Console.ResetColor ();
-					Console.Write (" ");
+					Console.Write(cpu.DefaultMemory.Data[x, y].ToString ("X2") + " ");
 				}
 				Console.WriteLine ();
 			}
@@ -90,11 +88,9 @@ namespace DarwinStebs
 			Console.ResetColor ();
 			Console.WriteLine ();
 			Console.WriteLine ("Register:");
-			foreach (Register r in cpu.RegisterBank)
+			foreach (Register r in cpu.RegisterBank) {
 				Console.WriteLine (r);
-
-			Console.WriteLine (cpu.StatusRegister);
-
+			}
 		}
 	}
 }
