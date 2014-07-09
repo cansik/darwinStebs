@@ -7,18 +7,10 @@ namespace DarwinStebs
 	{
 		public static void Main (string[] args)
 		{
-			/*StringBuilder asmSourceCode = new StringBuilder ();
-			asmSourceCode.AppendLine ("MOV AL,50");
-			asmSourceCode.AppendLine ("MOV AL,50");
-
-			cpu.InstructionRegister.Add (new AssemblyCommand () {
-				Opcode = Opcode.MOV,
-				Address = 0x30,
-				InstructionType = 0xA0
-			});*/
+			Console.Title = "DarwinStebs";
 
 			//setup cpu
-			var mem = new Memory (0xF, 0xF);
+			var mem = new Memory ();
 
 			var cpu = new CentralProcessingUnit ();
 			cpu.DefaultMemory = mem;
@@ -36,8 +28,18 @@ namespace DarwinStebs
 			mem.Write (p++, 0x00);
 
 			//jump back before AL
-			mem.Write (p++, 0xC0);
-			mem.Write(p++, 0xFC);
+			//mem.Write (p++, 0xC0);
+			//mem.Write(p++, 0xFC);
+
+			//compare AL true
+			mem.Write (p++, 0xDB);
+			mem.Write (p++, 0x00);
+			mem.Write (p++, 0x11);
+
+			//compare AL false
+			mem.Write (p++, 0xDB);
+			mem.Write (p++, 0x00);
+			mem.Write (p++, 0x12);
 
 			//write AL to 30 in memory
 			mem.Write (p++, 0xD2);
@@ -66,8 +68,6 @@ namespace DarwinStebs
 				for (int x = 0; x < cpu.DefaultMemory.Data.GetLength (1); x++) {
 					byte value = cpu.DefaultMemory.Data[x, y];
 
-					Console.ResetColor ();
-
 					if (value == 0x00)
 						Console.ForegroundColor = ConsoleColor.Gray;
 
@@ -80,7 +80,9 @@ namespace DarwinStebs
 						Console.ForegroundColor = ConsoleColor.White;
 					}
 
-					Console.Write(cpu.DefaultMemory.Data[x, y].ToString ("X2") + " ");
+					Console.Write(cpu.DefaultMemory.Data[x, y].ToString ("X2"));
+					Console.ResetColor ();
+					Console.Write (" ");
 				}
 				Console.WriteLine ();
 			}
@@ -88,9 +90,11 @@ namespace DarwinStebs
 			Console.ResetColor ();
 			Console.WriteLine ();
 			Console.WriteLine ("Register:");
-			foreach (Register r in cpu.RegisterBank) {
+			foreach (Register r in cpu.RegisterBank)
 				Console.WriteLine (r);
-			}
+
+			Console.WriteLine (cpu.StatusRegister);
+
 		}
 	}
 }

@@ -48,6 +48,9 @@
     <Compile Include="Stebs\Operations\DEC.cs" />
     <Compile Include="Stebs\Operations\HALT.cs" />
     <Compile Include="Stebs\Operations\JMP.cs" />
+    <Compile Include="Stebs\Operations\NOP.cs" />
+    <Compile Include="Stebs\Operations\CMP.cs" />
+    <Compile Include="Stebs\StatusRegister.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

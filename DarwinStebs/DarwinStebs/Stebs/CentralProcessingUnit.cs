@@ -9,21 +9,27 @@ namespace DarwinStebs
 	{
 		readonly DecoderTable decoder = new DecoderTable();
 
+		//Public Register
 		public List<Register> RegisterBank { get; set;}
-		public byte InstructionPointer { get; set; }
 
+		//Internal Register
+		public byte InstructionPointer { get; set; }
+		public byte StackPointer { get; set; }
+		public StatusRegister StatusRegister { get; set; }
+
+		//Memory Bank
 		public Memory DefaultMemory { get; set; }
 
 		public CentralProcessingUnit ()
 		{
 			RegisterBank = new List<Register> ();
+			StatusRegister = new StatusRegister ();
 
 			//Add default registers
 			RegisterBank.Add (new Register ("AL", 0x00));
 			RegisterBank.Add (new Register ("BL", 0x01));
 			RegisterBank.Add (new Register ("CL", 0x02));
 			RegisterBank.Add (new Register ("DL", 0x03));
-			RegisterBank.Add (new Register ("SP", 0x04));
 		}
 
 		public Register GetRegister(byte address)
@@ -35,14 +41,6 @@ namespace DarwinStebs
 		{
 			byte value = DefaultMemory.Read (InstructionPointer++);
 			var operation = decoder.GetByOpcode (value);
-
-			//dynamic load params
-			/*
-				List<int> parameters = new List<int> ();
-				for (int i = 0; i < operation.Parameter.Count; i++) {
-					parameters.Add (DefaultMemory.Read (InstructionPointer++));
-				}
-				*/
 
 			byte param1 = 0, param2 = 0;
 

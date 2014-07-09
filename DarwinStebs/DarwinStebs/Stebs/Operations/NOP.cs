@@ -2,9 +2,9 @@
 
 namespace DarwinStebs
 {
-	public class HALT : BaseOperation
+	public class NOP : BaseOperation
 	{
-		public HALT (CentralProcessingUnit cpu) : base(cpu)
+		public NOP (CentralProcessingUnit cpu) : base(cpu)
 		{
 		}
 
@@ -12,6 +12,6 @@ namespace DarwinStebs
 		{
 			return;
 		}
-	}
 }
 
+}
