@@ -26,14 +26,18 @@ namespace DarwinStebs
 			//setup memory by hand
 			byte p = 0x00;
 
-			//set AL to 3B
+			//set AL to 10
 			mem.Write (p++, 0xD0);
 			mem.Write (p++, 0x00);
-			mem.Write (p++, 0x3b);
+			mem.Write (p++, 0x10);
 
 			//increment AL
 			mem.Write (p++, 0xA4);
 			mem.Write (p++, 0x00);
+
+			//jump back before AL
+			mem.Write (p++, 0xC0);
+			mem.Write(p++, 0xFC);
 
 			//write AL to 30 in memory
 			mem.Write (p++, 0xD2);

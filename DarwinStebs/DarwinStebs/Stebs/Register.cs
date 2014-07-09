@@ -16,7 +16,8 @@ namespace DarwinStebs
 
 		public override string ToString ()
 		{
-			return Name + " (" + Address.ToString ("X2") + ")\t" + Value.ToString ("X2"); 
+			return Name + " (" + Address.ToString ("X2") + ")\t" + Value.ToString ("X2")
+				+ "\t" + Convert.ToString(Value, 2).PadLeft(8, '0'); 
 		}
 	}
 }
