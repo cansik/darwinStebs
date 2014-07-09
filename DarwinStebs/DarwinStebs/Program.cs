@@ -24,7 +24,7 @@ namespace DarwinStebs
 			cpu.DefaultMemory = mem;
 
 			//setup memory by hand
-			int p = 0x00;
+			byte p = 0x00;
 
 			//set AL to 3B
 			mem.Write (p++, 0xD0);
@@ -35,6 +35,8 @@ namespace DarwinStebs
 			mem.Write (p++, 0xD2);
 			mem.Write (p++, 0x30);
 			mem.Write (p++, 0x00);
+
+			//end
 			mem.Write (p++, 0x00);
 
 			//run cpu

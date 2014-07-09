@@ -5,14 +5,14 @@ namespace DarwinStebs
 {
 	public class Memory
 	{
-		readonly int[,] data;
+		readonly byte[,] data;
 
-		public Memory (int width, int height)
+		public Memory (byte width, byte height)
 		{
-			data = new int[width, height];
+			data = new byte[width, height];
 		}
 
-		public int Read(int address)
+		public byte Read(byte address)
 		{
 			//Read first and second nibble of byte
 			int y = address >> 4;
@@ -21,7 +21,7 @@ namespace DarwinStebs
 			return data [x, y];
 		}
 
-		public void Write(int address, int value)
+		public void Write(byte address, byte value)
 		{
 			//Read first and second nibble of byte
 			int y = address >> 4;
@@ -32,7 +32,7 @@ namespace DarwinStebs
 
 		public override string ToString ()
 		{
-			StringBuilder b = new StringBuilder ();
+			var b = new StringBuilder ();
 		
 			for (int y = 0; y < data.GetLength(0); y++) {
 				for (int x = 0; x < data.GetLength (1); x++) {

@@ -63,7 +63,7 @@ namespace DarwinStebs
 			Add(new ASMOperation(0xFF, "NOP"));
 		}
 
-		public ASMOperation GetByOpcode(int opcode)
+		public ASMOperation GetByOpcode(byte opcode)
 		{
 			return this.Single (o => o.OpCode.Equals (opcode));
 		}

@@ -10,7 +10,7 @@ namespace DarwinStebs
 		readonly DecoderTable decoder = new DecoderTable();
 
 		public List<Register> RegisterBank { get; set;}
-		public int InstructionPointer { get; set; }
+		public byte InstructionPointer { get; set; }
 
 		public Memory DefaultMemory { get; set; }
 
@@ -26,7 +26,7 @@ namespace DarwinStebs
 			RegisterBank.Add (new Register ("SP", 0x04));
 		}
 
-		public Register GetRegister(int address)
+		public Register GetRegister(byte address)
 		{
 			return RegisterBank.Single (r => r.Address.Equals (address));
 		}
@@ -34,7 +34,7 @@ namespace DarwinStebs
 		public void Run()
 		{
 			while (DefaultMemory.Read (InstructionPointer) != 0x00) {
-				int value = DefaultMemory.Read (InstructionPointer++);
+				byte value = DefaultMemory.Read (InstructionPointer++);
 				var operation = decoder.GetByOpcode (value);
 
 				//dynamic load params
@@ -45,7 +45,7 @@ namespace DarwinStebs
 				}
 				*/
 
-				int param1 = 0, param2 = 0;
+				byte param1 = 0, param2 = 0;
 
 				//read params classic
 				if (operation.Parameter.Count > 0) {

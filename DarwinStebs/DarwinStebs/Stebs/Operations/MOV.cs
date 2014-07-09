@@ -8,7 +8,7 @@ namespace DarwinStebs
 		{
 		}
 
-		public override void Execute (int opcode, int param1, int param2)
+		public override void Execute (byte opcode, byte param1, byte param2)
 		{
 			base.Execute (opcode, param1, param2);
 

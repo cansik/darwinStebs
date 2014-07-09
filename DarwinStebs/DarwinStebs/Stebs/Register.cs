@@ -5,10 +5,10 @@ namespace DarwinStebs
 	public class Register
 	{
 		public string Name{ get; set; }
-		public int Address { get; set; }
-		public int Value { get; set; }
+		public byte Address { get; set; }
+		public byte Value { get; set; }
 
-		public Register (String name, int address)
+		public Register (String name, byte address)
 		{
 			Name = name;
 			Address = address;

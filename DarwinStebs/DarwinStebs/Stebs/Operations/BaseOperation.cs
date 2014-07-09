@@ -11,7 +11,7 @@ namespace DarwinStebs
 			this.cpu = cpu;
 		}
 
-		public virtual void Execute(int opcode, int param1, int param2)
+		public virtual void Execute(byte opcode, byte param1, byte param2)
 		{
 
 		}
