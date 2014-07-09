@@ -26,21 +26,7 @@ namespace DarwinStebs
 				break;
 			}
 
-			SetStatusRegister (res);
-		}
-
-		private void SetStatusRegister(int res)
-		{
-			bool zeroFlag = false;
-			bool signedFlag = false;
-
-			if (res.Equals (0x00))
-				zeroFlag = true;
-			else if (res < 0x00)
-				signedFlag = true;
-
-			cpu.StatusRegister.ZeroFlag = zeroFlag;
-			cpu.StatusRegister.SignedFlag = signedFlag;
+			cpu.StatusRegister.SetByArithmeticResult(res);
 		}
 	}
 }

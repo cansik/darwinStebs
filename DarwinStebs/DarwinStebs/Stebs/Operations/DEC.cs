@@ -10,7 +10,8 @@ namespace DarwinStebs
 
 		public override void Execute (byte opcode, byte param1, byte param2)
 		{
-			cpu.GetRegister (param1).Value--;
+			int res = --cpu.GetRegister (param1).Value;
+			cpu.StatusRegister.SetByArithmeticResult(res);
 		}
 	}
 }

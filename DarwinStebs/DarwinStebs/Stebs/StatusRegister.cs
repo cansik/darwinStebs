@@ -63,6 +63,20 @@ namespace DarwinStebs
 				SetFlag (InterruptFlagPosition, value);
 			}
 		}
+
+		public void SetByArithmeticResult(int res)
+		{
+			bool zeroFlag = false;
+			bool signedFlag = false;
+
+			if (res.Equals (0x00))
+				zeroFlag = true;
+			else if (res < 0x00)
+				signedFlag = true;
+
+			ZeroFlag = zeroFlag;
+			SignedFlag = signedFlag;
+		}
 	}
 }
 
