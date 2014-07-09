@@ -31,40 +31,40 @@ namespace DarwinStebs
 			return RegisterBank.Single (r => r.Address.Equals (address));
 		}
 
-		public void Run()
+		public byte NextStep()
 		{
-			while (DefaultMemory.Read (InstructionPointer) != 0x00) {
-				byte value = DefaultMemory.Read (InstructionPointer++);
-				var operation = decoder.GetByOpcode (value);
+			byte value = DefaultMemory.Read (InstructionPointer++);
+			var operation = decoder.GetByOpcode (value);
 
-				//dynamic load params
-				/*
+			//dynamic load params
+			/*
 				List<int> parameters = new List<int> ();
 				for (int i = 0; i < operation.Parameter.Count; i++) {
 					parameters.Add (DefaultMemory.Read (InstructionPointer++));
 				}
 				*/
 
-				byte param1 = 0, param2 = 0;
+			byte param1 = 0, param2 = 0;
 
-				//read params classic
-				if (operation.Parameter.Count > 0) {
-					param1 = DefaultMemory.Read (InstructionPointer++);
+			//read params classic
+			if (operation.Parameter.Count > 0) {
+				param1 = DefaultMemory.Read (InstructionPointer++);
 
-					if (operation.Parameter.Count > 1) {
-						param2 = DefaultMemory.Read (InstructionPointer++);
-					}
+				if (operation.Parameter.Count > 1) {
+					param2 = DefaultMemory.Read (InstructionPointer++);
 				}
-
-
-				Assembly current = Assembly.GetExecutingAssembly ();
-				var type = current.GetTypes ().Single (p => p.Name.Equals (operation.Name));
-
-				//create operation and execute
-				var classe = Activator.CreateInstance (type, new object[]{ this }, null);
-				MethodInfo method = type.GetMethod ("Execute");
-				method.Invoke (classe, new object[]{ operation.OpCode, param1, param2 });
 			}
+
+
+			Assembly current = Assembly.GetExecutingAssembly ();
+			var type = current.GetTypes ().Single (p => p.Name.Equals (operation.Name));
+
+			//create operation and execute
+			var classe = Activator.CreateInstance (type, new object[]{ this }, null);
+			MethodInfo method = type.GetMethod ("Execute");
+			method.Invoke (classe, new object[]{ operation.OpCode, param1, param2 });
+
+			return operation.OpCode;
 		}
 	}
 }

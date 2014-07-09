@@ -44,6 +44,9 @@
     <Compile Include="Stebs\Operations\BaseOperation.cs" />
     <Compile Include="Stebs\Compiler\CommandMatch.cs" />
     <Compile Include="Stebs\Compiler\StebsCompiler.cs" />
+    <Compile Include="Stebs\Operations\INC.cs" />
+    <Compile Include="Stebs\Operations\DEC.cs" />
+    <Compile Include="Stebs\Operations\HALT.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

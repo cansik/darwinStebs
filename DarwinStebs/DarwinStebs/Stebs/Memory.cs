@@ -7,6 +7,8 @@ namespace DarwinStebs
 	{
 		readonly byte[,] data;
 
+		public byte[,] Data{ get { return data; } }
+
 		public Memory (byte width, byte height)
 		{
 			data = new byte[width, height];

@@ -31,6 +31,10 @@ namespace DarwinStebs
 			mem.Write (p++, 0x00);
 			mem.Write (p++, 0x3b);
 
+			//increment AL
+			mem.Write (p++, 0xA4);
+			mem.Write (p++, 0x00);
+
 			//write AL to 30 in memory
 			mem.Write (p++, 0xD2);
 			mem.Write (p++, 0x30);
@@ -40,11 +44,46 @@ namespace DarwinStebs
 			mem.Write (p++, 0x00);
 
 			//run cpu
-			cpu.Run ();
+			do {
+				PrintCPUState (cpu);
+				Console.ReadKey (true);
+			} while(!cpu.NextStep ().Equals (0x00));
 
-			//show result
-			Console.WriteLine (cpu.DefaultMemory);
+			Console.WriteLine ();
+			Console.WriteLine ("cpu finished!");
+		}
 
+		private static void PrintCPUState(CentralProcessingUnit cpu)
+		{
+			Console.Clear ();
+			Console.WriteLine ("Memory:");
+
+			for (int y = 0; y < cpu.DefaultMemory.Data.GetLength(0); y++) {
+				for (int x = 0; x < cpu.DefaultMemory.Data.GetLength (1); x++) {
+					byte value = cpu.DefaultMemory.Data[x, y];
+
+					Console.ResetColor ();
+
+					if (value == 0x00)
+						Console.ForegroundColor = ConsoleColor.Gray;
+
+					//calc current x,y
+					int cy = cpu.InstructionPointer >> 4;
+					int cx = cpu.InstructionPointer & 0x0f;
+
+					if (cx == x && cy == y) {
+						Console.BackgroundColor = ConsoleColor.Red;
+						Console.ForegroundColor = ConsoleColor.White;
+					}
+
+					Console.Write(cpu.DefaultMemory.Data[x, y].ToString ("X2") + " ");
+				}
+				Console.WriteLine ();
+			}
+
+			Console.ResetColor ();
+			Console.WriteLine ();
+			Console.WriteLine ("Register:");
 			foreach (Register r in cpu.RegisterBank) {
 				Console.WriteLine (r);
 			}
