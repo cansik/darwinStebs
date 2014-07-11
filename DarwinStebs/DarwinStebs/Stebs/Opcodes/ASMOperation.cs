@@ -6,7 +6,7 @@ namespace DarwinStebs
 	public class ASMOperation
 	{
 		public byte OpCode{ get; set;}
-		public string Name { get; set;}
+		public string Name { get; set;} // Mnemonic
 
 		public List<ASMParameterType> Parameter {get; set;}
 

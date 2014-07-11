@@ -1,27 +1,34 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DarwinStebs/Stebs/Operations/CMP.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DarwinStebsUI/MemoryView/MemoryViewController.cs">
     <Files>
-      <File FileName="DarwinStebs/Program.cs" Line="21" Column="4" />
-      <File FileName="DarwinStebs/Stebs/Memory.cs" Line="11" Column="4" />
-      <File FileName="DarwinStebs/Stebs/CentralProcessingUnit.cs" Line="10" Column="19" />
-      <File FileName="DarwinStebs/Stebs/Register.cs" Line="9" Column="34" />
+      <File FileName="DarwinStebs/Program.cs" Line="53" Column="25" />
+      <File FileName="DarwinStebs/Stebs/Memory.cs" Line="38" Column="4" />
+      <File FileName="DarwinStebs/Stebs/CentralProcessingUnit.cs" Line="45" Column="26" />
+      <File FileName="DarwinStebs/Stebs/Register.cs" Line="20" Column="56" />
       <File FileName="DarwinStebs/Stebs/Opcodes/ASMParameterType.cs" Line="1" Column="1" />
-      <File FileName="DarwinStebs/Stebs/Opcodes/ASMOperation.cs" Line="27" Column="27" />
-      <File FileName="DarwinStebs/Stebs/Opcodes/DecoderTable.cs" Line="12" Column="24" />
-      <File FileName="DarwinStebs/Stebs/Operations/MOV.cs" Line="27" Column="14" />
-      <File FileName="DarwinStebs/Stebs/Operations/BaseOperation.cs" Line="13" Column="3" />
+      <File FileName="DarwinStebs/Stebs/Opcodes/ASMOperation.cs" Line="9" Column="46" />
+      <File FileName="DarwinStebs/Stebs/Opcodes/DecoderTable.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Operations/MOV.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Operations/BaseOperation.cs" Line="1" Column="1" />
       <File FileName="DarwinStebs/Stebs/Compiler/StebsCompiler.cs" Line="1" Column="1" />
       <File FileName="DarwinStebs/Stebs/Compiler/CommandMatch.cs" Line="15" Column="30" />
-      <File FileName="DarwinStebs/Stebs/Operations/INC.cs" Line="18" Column="1" />
-      <File FileName="DarwinStebs/Stebs/Operations/DEC.cs" Line="14" Column="4" />
-      <File FileName="DarwinStebs/Stebs/Operations/HALT.cs" Line="9" Column="4" />
-      <File FileName="DarwinStebs/Stebs/Operations/JMP.cs" Line="13" Column="37" />
-      <File FileName="DarwinStebs/Stebs/Operations/NOP.cs" Line="17" Column="2" />
-      <File FileName="DarwinStebs/Stebs/Operations/CMP.cs" Line="28" Column="4" />
-      <File FileName="DarwinStebs/Stebs/StatusRegister.cs" Line="18" Column="38" />
-      <File FileName="DarwinStebs/Stebs/Operations/JNZ.cs" Line="17" Column="2" />
-      <File FileName="DarwinStebs/Stebs/Operations/JZ.cs" Line="11" Column="25" />
+      <File FileName="DarwinStebs/Stebs/Operations/INC.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Operations/DEC.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Operations/HALT.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Operations/JMP.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Operations/NOP.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Operations/CMP.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/StatusRegister.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Operations/JNZ.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Operations/JZ.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebsUI/MainWindowController.cs" Line="166" Column="4" />
+      <File FileName="DarwinStebsUI/DataSources/MemoryDataSource.cs" Line="33" Column="5" />
+      <File FileName="DarwinStebsUI/DataSources/RegisterDataSource.cs" Line="28" Column="9" />
+      <File FileName="DarwinStebs/Stebs/AddressPoint.cs" Line="5" Column="27" />
+      <File FileName="DarwinStebsUI/NSColorableTableView.cs" Line="10" Column="4" />
+      <File FileName="DarwinStebsUI/MemoryView/MemoryView.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebsUI/MemoryView/MemoryViewController.cs" Line="10" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

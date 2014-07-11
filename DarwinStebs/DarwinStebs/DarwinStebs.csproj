@@ -53,6 +53,7 @@
     <Compile Include="Stebs\StatusRegister.cs" />
     <Compile Include="Stebs\Operations\JNZ.cs" />
     <Compile Include="Stebs\Operations\JZ.cs" />
+    <Compile Include="Stebs\AddressPoint.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

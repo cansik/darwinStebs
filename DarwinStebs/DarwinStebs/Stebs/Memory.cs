@@ -18,20 +18,23 @@ namespace DarwinStebs
 
 		public byte Read(byte address)
 		{
-			//Read first and second nibble of byte
-			int y = address >> 4;
-			int x = address & 0x0f;
-
-			return Data [x, y];
+			var a = AddressToPoint (address);
+			return Data [a.X, a.Y];
 		}
 
 		public void Write(byte address, byte value)
+		{
+			var a = AddressToPoint (address);
+			Data [a.X, a.Y] = value;
+		}
+
+		public AddressPoint AddressToPoint(byte address)
 		{
 			//Read first and second nibble of byte
 			int y = address >> 4;
 			int x = address & 0x0f;
 
-			Data [x, y] = value;
+			return new AddressPoint (x, y);
 		}
 
 		public override string ToString ()
