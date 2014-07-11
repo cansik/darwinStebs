@@ -1,24 +1,33 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DarwinStebs/Stebs/Opcodes/DecoderTable.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DarwinStebs/Stebs/Operations/CMP.cs">
     <Files>
-      <File FileName="DarwinStebs/Program.cs" Line="1" Column="1" />
-      <File FileName="DarwinStebs/Stebs/AssemblyCommand.cs" Line="1" Column="1" />
-      <File FileName="DarwinStebs/Stebs/Memory.cs" Line="1" Column="1" />
-      <File FileName="DarwinStebs/Stebs/CentralProcessingUnit.cs" Line="1" Column="1" />
-      <File FileName="DarwinStebs/Extensions/Util.cs" Line="1" Column="1" />
-      <File FileName="DarwinStebs/Stebs/Register.cs" Line="1" Column="1" />
-      <File FileName="DarwinStebs/Stebs/StebsCompiler.cs" Line="1" Column="1" />
-      <File FileName="DarwinStebs/Stebs/CommandMatch.cs" Line="1" Column="1" />
-      <File FileName="DarwinStebs/Stebs/Opcodes/Opcode.cs" Line="1" Column="1" />
-      <File FileName="DarwinStebs/Stebs/Opcodes/OpcodeParamAttribute.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Program.cs" Line="21" Column="4" />
+      <File FileName="DarwinStebs/Stebs/Memory.cs" Line="11" Column="4" />
+      <File FileName="DarwinStebs/Stebs/CentralProcessingUnit.cs" Line="10" Column="19" />
+      <File FileName="DarwinStebs/Stebs/Register.cs" Line="9" Column="34" />
       <File FileName="DarwinStebs/Stebs/Opcodes/ASMParameterType.cs" Line="1" Column="1" />
-      <File FileName="DarwinStebs/Stebs/Opcodes/ASMOperation.cs" Line="1" Column="1" />
-      <File FileName="DarwinStebs/Stebs/Opcodes/DecoderTable.cs" Line="14" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Opcodes/ASMOperation.cs" Line="27" Column="27" />
+      <File FileName="DarwinStebs/Stebs/Opcodes/DecoderTable.cs" Line="12" Column="24" />
+      <File FileName="DarwinStebs/Stebs/Operations/MOV.cs" Line="27" Column="14" />
+      <File FileName="DarwinStebs/Stebs/Operations/BaseOperation.cs" Line="13" Column="3" />
+      <File FileName="DarwinStebs/Stebs/Compiler/StebsCompiler.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Compiler/CommandMatch.cs" Line="15" Column="30" />
+      <File FileName="DarwinStebs/Stebs/Operations/INC.cs" Line="18" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Operations/DEC.cs" Line="14" Column="4" />
+      <File FileName="DarwinStebs/Stebs/Operations/HALT.cs" Line="9" Column="4" />
+      <File FileName="DarwinStebs/Stebs/Operations/JMP.cs" Line="13" Column="37" />
+      <File FileName="DarwinStebs/Stebs/Operations/NOP.cs" Line="17" Column="2" />
+      <File FileName="DarwinStebs/Stebs/Operations/CMP.cs" Line="28" Column="4" />
+      <File FileName="DarwinStebs/Stebs/StatusRegister.cs" Line="18" Column="38" />
+      <File FileName="DarwinStebs/Stebs/Operations/JNZ.cs" Line="17" Column="2" />
+      <File FileName="DarwinStebs/Stebs/Operations/JZ.cs" Line="11" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="DarwinStebs/Stebs/Memory.cs" line="36" offsetX="291" offsetY="525" expression="data" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>

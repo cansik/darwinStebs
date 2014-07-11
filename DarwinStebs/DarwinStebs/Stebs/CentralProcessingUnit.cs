@@ -44,7 +44,7 @@ namespace DarwinStebs
 
 			byte param1 = 0, param2 = 0;
 
-			//read params classic
+			//read params
 			if (operation.Parameter.Count > 0) {
 				param1 = DefaultMemory.Read (InstructionPointer++);
 
@@ -53,14 +53,13 @@ namespace DarwinStebs
 				}
 			}
 
-
+			//get operation by opcode
 			Assembly current = Assembly.GetExecutingAssembly ();
 			var type = current.GetTypes ().Single (p => p.Name.Equals (operation.Name));
 
-			//create operation and execute
-			var classe = Activator.CreateInstance (type, new object[]{ this }, null);
-			MethodInfo method = type.GetMethod ("Execute");
-			method.Invoke (classe, new object[]{ operation.OpCode, param1, param2 });
+			//execute operation
+			var operationLogic = (BaseOperation)Activator.CreateInstance (type, new object[]{ this }, null);
+			operationLogic.Execute (operation.OpCode, param1, param2);
 
 			return operation.OpCode;
 		}

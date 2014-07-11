@@ -4,7 +4,7 @@ namespace DarwinStebs
 {
 	public class BaseOperation
 	{
-		internal CentralProcessingUnit cpu;
+		protected CentralProcessingUnit cpu;
 
 		public BaseOperation (CentralProcessingUnit cpu)
 		{
