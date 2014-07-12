@@ -9,17 +9,23 @@ using System.CodeDom.Compiler;
 
 namespace DarwinStebsUI
 {
-	[Register ("MemoryViewController")]
-	partial class MemoryViewController
+	[Register ("MemoryViewItemController")]
+	partial class MemoryViewItemController
 	{
+		[Outlet]
+		MonoMac.AppKit.NSTextField valueText { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (valueText != null) {
+				valueText.Dispose ();
+				valueText = null;
+			}
 		}
 	}
 
-	[Register ("MemoryView")]
-	partial class MemoryView
+	[Register ("MemoryViewItem")]
+	partial class MemoryViewItem
 	{
 		
 		void ReleaseDesignerOutlets ()

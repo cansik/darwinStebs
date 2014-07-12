@@ -17,6 +17,9 @@ namespace DarwinStebsUI
 		CentralProcessingUnit cpu;
 		NSColorableTableView memoryView;
 
+		MemoryViewItemController lastInstructionPoint;
+		MemoryViewController memControl;
+
 		#region Constructors
 
 		// Called when created from unmanaged code
@@ -83,7 +86,7 @@ namespace DarwinStebsUI
 			memory.Write (p++, 0xFC);
 
 			//compare AL true
-			memory.Write (p++, 0xDB);
+			memory.Write (p++, 0xD0);
 			memory.Write (p++, 0x00);
 			memory.Write (p++, 0x11);
 
@@ -112,8 +115,12 @@ namespace DarwinStebsUI
 		public void InitGui()
 		{
 			memoryView = new NSColorableTableView ();
-			tvMemoryView.PreviousKeyView.ReplaceSubviewWith (tvMemoryView, memoryView);
-			tvMemoryView = null;
+			//tvMemoryView.PreviousKeyView.ReplaceSubviewWith (tvMemoryView, memoryView);
+
+			memControl = new MemoryViewController ();
+			tvMemoryView.PreviousKeyView.ReplaceSubviewWith (tvMemoryView, memControl.View);
+			memControl.Memory = memory;
+			memControl.Init ();
 
 			//init memory view
 			var indexColumn = new NSTableColumn("index");
@@ -139,6 +146,9 @@ namespace DarwinStebsUI
 			RegisterDataSource registerSource = new RegisterDataSource (cpu.RegisterBank);
 			tvRegisterView.DataSource = registerSource;
 			tvRegisterView.SizeToFit ();
+
+			DrawInstructionPoint ();
+			memControl.UpdateData();
 		}
 
 		public void UpdateTableViews()
@@ -149,14 +159,34 @@ namespace DarwinStebsUI
 
 		partial void btnRun_Clicked (MonoMac.AppKit.NSButton sender)
 		{
-			RunNextStep();
+			if(RunNextStep())
+			{
+				DrawInstructionPoint();
+			}
+
 			UpdateTableViews();
+			memControl.UpdateData();
 
 			//paint current instruction pointer (doesn't work)
+			/*
 			var a = memory.AddressToPoint (cpu.InstructionPointer);
 			var cell = (NSTextFieldCell)memoryView.GetCell (a.X + 1, a.Y);
 			cell.BackgroundColor = NSColor.Red;
 			cell.DrawsBackground = true;
+			*/
+		}
+
+		private void DrawInstructionPoint()
+		{
+			if(lastInstructionPoint != null)
+			{
+				//rest color
+				lastInstructionPoint.BackgroundColor = null;
+			}
+
+			var a = memory.AddressToPoint (cpu.InstructionPointer);
+			lastInstructionPoint = memControl.GetItem(a.X, a.Y);
+			lastInstructionPoint.BackgroundColor = NSColor.Red;
 		}
 
 		partial void btnReset_Clicked (MonoMac.AppKit.NSButton sender)
@@ -165,7 +195,7 @@ namespace DarwinStebsUI
 			UpdateTableViews();
 		}
 
-		public void RunNextStep()
+		public bool RunNextStep()
 		{
 			if (!cpuFinished) {
 				int opcode = cpu.NextStep ();
@@ -175,8 +205,13 @@ namespace DarwinStebsUI
 				if (opcode == 0x00) {
 					cpuFinished = true;
 					this.statusLabel.StringValue = "cpu finished!";
+					return false;
 				}
+
+				return true;
 			}
+
+			return false;
 		}
 	}
 }

@@ -68,6 +68,7 @@
     <Folder Include="Resources\" />
     <Folder Include="DataSources\" />
     <Folder Include="MemoryView\" />
+    <Folder Include="MemoryView\MemoryViewItem\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.cs" />
@@ -88,11 +89,17 @@
     <Compile Include="MemoryView\MemoryView.designer.cs">
       <DependentUpon>MemoryView.cs</DependentUpon>
     </Compile>
+    <Compile Include="MemoryView\MemoryViewItem\MemoryViewItem.cs" />
+    <Compile Include="MemoryView\MemoryViewItem\MemoryViewItemController.cs" />
+    <Compile Include="MemoryView\MemoryViewItem\MemoryViewItem.designer.cs">
+      <DependentUpon>MemoryViewItem.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />
     <InterfaceDefinition Include="MainMenu.xib" />
     <InterfaceDefinition Include="MemoryView\MemoryView.xib" />
+    <InterfaceDefinition Include="MemoryView\MemoryViewItem\MemoryViewItem.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
