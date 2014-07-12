@@ -64,6 +64,12 @@ namespace DarwinStebsUI
 			return Items [y] [x];
 		}
 
+		public MemoryViewItemController GetItem(byte address)
+		{
+			var a = Memory.AddressToPoint (address);
+			return GetItem (a.X, a.Y);
+		}
+
 		public void Init()
 		{
 			Items = new List<List<MemoryViewItemController>> ();

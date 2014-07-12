@@ -77,6 +77,11 @@ namespace DarwinStebsUI
 				return (MemoryViewItem)base.View;
 			}
 		}
+
+		public override void AwakeFromNib ()
+		{
+			base.AwakeFromNib ();
+		}
 	}
 }
 

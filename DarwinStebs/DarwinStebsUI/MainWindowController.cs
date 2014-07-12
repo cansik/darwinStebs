@@ -18,6 +18,8 @@ namespace DarwinStebsUI
 		NSColorableTableView memoryView;
 
 		MemoryViewItemController lastInstructionPoint;
+		int lastParamCount = 0;
+
 		MemoryViewController memControl;
 
 		#region Constructors
@@ -182,10 +184,21 @@ namespace DarwinStebsUI
 			{
 				//rest color
 				lastInstructionPoint.BackgroundColor = null;
+
+				for (int p = 0; p < lastParamCount; p++)
+					memControl.GetItem ((byte)(cpu.InstructionPointer - p - 1)).BackgroundColor = null;
 			}
 
 			var a = memory.AddressToPoint (cpu.InstructionPointer);
-			lastInstructionPoint = memControl.GetItem(a.X, a.Y);
+			var op = new DecoderTable ().GetByOpcode (memory.Data [a.X, a.Y]);
+
+			//color params
+			lastParamCount = op.Parameter.Count;
+			for (int p = 0; p < op.Parameter.Count; p++)
+				memControl.GetItem ((byte)(cpu.InstructionPointer + p + 1)).BackgroundColor = NSColor.Green;
+
+
+			lastInstructionPoint = memControl.GetItem(cpu.InstructionPointer);
 			lastInstructionPoint.BackgroundColor = NSColor.Red;
 		}
 
