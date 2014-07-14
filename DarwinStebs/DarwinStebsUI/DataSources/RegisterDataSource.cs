@@ -8,7 +8,7 @@ namespace DarwinStebsUI
 {
 	public class RegisterDataSource : NSTableViewDataSource
 	{
-		List<Register> Registers{ get; set; }
+		public List<Register> Registers{ get; set; }
 
 		public RegisterDataSource (List<Register> registers)
 		{

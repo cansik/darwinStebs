@@ -17,9 +17,6 @@ namespace DarwinStebsUI
 		CentralProcessingUnit cpu;
 		NSColorableTableView memoryView;
 
-		MemoryViewItemController lastInstructionPoint;
-		int lastParamCount = 0;
-
 		MemoryViewController memControl;
 
 		#region Constructors
@@ -102,6 +99,15 @@ namespace DarwinStebsUI
 			memory.Write (p++, 0x30);
 			memory.Write (p++, 0x00);
 
+			//set AL to 93
+			memory.Write (p++, 0xD0);
+			memory.Write (p++, 0x00);
+			memory.Write (p++, 0x93);
+
+			//ror AL
+			memory.Write (p++, 0x9B);
+			memory.Write (p++, 0x00);
+
 			//end
 			memory.Write (p++, 0x00);
 
@@ -146,10 +152,11 @@ namespace DarwinStebsUI
 
 			//init register view
 			RegisterDataSource registerSource = new RegisterDataSource (cpu.RegisterBank);
+			registerSource.Registers.Add (cpu.StatusRegister);
 			tvRegisterView.DataSource = registerSource;
 			tvRegisterView.SizeToFit ();
 
-			DrawInstructionPoint ();
+			ApplyColoring ();
 			memControl.UpdateData();
 		}
 
@@ -163,7 +170,7 @@ namespace DarwinStebsUI
 		{
 			if(RunNextStep())
 			{
-				DrawInstructionPoint();
+				ApplyColoring();
 			}
 
 			UpdateTableViews();
@@ -178,28 +185,26 @@ namespace DarwinStebsUI
 			*/
 		}
 
-		private void DrawInstructionPoint()
+		private void ApplyColoring()
 		{
-			if(lastInstructionPoint != null)
-			{
-				//rest color
-				lastInstructionPoint.BackgroundColor = null;
+			//reset colors
+			foreach (var memRow in memControl.Items)
+				foreach (var memP in memRow)
+					memP.BackgroundColor = null;
 
-				for (int p = 0; p < lastParamCount; p++)
-					memControl.GetItem ((byte)(cpu.InstructionPointer - p - 1)).BackgroundColor = null;
-			}
-
+			//draw new colors
 			var a = memory.AddressToPoint (cpu.InstructionPointer);
 			var op = new DecoderTable ().GetByOpcode (memory.Data [a.X, a.Y]);
 
 			//color params
-			lastParamCount = op.Parameter.Count;
 			for (int p = 0; p < op.Parameter.Count; p++)
 				memControl.GetItem ((byte)(cpu.InstructionPointer + p + 1)).BackgroundColor = NSColor.Green;
 
+			//color instructionPoint
+			memControl.GetItem(cpu.InstructionPointer).BackgroundColor = NSColor.Red;
 
-			lastInstructionPoint = memControl.GetItem(cpu.InstructionPointer);
-			lastInstructionPoint.BackgroundColor = NSColor.Red;
+			//color stackpoint
+			memControl.GetItem(cpu.StackPointer).BackgroundColor = NSColor.Blue;
 		}
 
 		partial void btnReset_Clicked (MonoMac.AppKit.NSButton sender)

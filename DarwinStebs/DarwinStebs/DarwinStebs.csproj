@@ -54,6 +54,8 @@
     <Compile Include="Stebs\Operations\JNZ.cs" />
     <Compile Include="Stebs\Operations\JZ.cs" />
     <Compile Include="Stebs\AddressPoint.cs" />
+    <Compile Include="Stebs\Operations\ROL.cs" />
+    <Compile Include="Stebs\Operations\ROR.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

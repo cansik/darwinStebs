@@ -9,6 +9,7 @@
     <RootNamespace>DarwinStebsUI</RootNamespace>
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
     <AssemblyName>DarwinStebsUI</AssemblyName>
+    <SuppressXamMacUpsell>True</SuppressXamMacUpsell>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
