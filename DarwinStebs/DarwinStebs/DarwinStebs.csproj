@@ -56,6 +56,8 @@
     <Compile Include="Stebs\AddressPoint.cs" />
     <Compile Include="Stebs\Operations\ROL.cs" />
     <Compile Include="Stebs\Operations\ROR.cs" />
+    <Compile Include="Stebs\Operations\SHR.cs" />
+    <Compile Include="Stebs\Operations\SHL.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
