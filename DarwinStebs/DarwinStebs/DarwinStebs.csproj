@@ -54,6 +54,10 @@
     <Compile Include="Stebs\Operations\JNZ.cs" />
     <Compile Include="Stebs\Operations\JZ.cs" />
     <Compile Include="Stebs\AddressPoint.cs" />
+    <Compile Include="Stebs\Exceptions\CompilerException.cs" />
+    <Compile Include="Stebs\Compiler\Tokenizer.cs" />
+    <Compile Include="Stebs\Compiler\Token.cs" />
+    <Compile Include="Stebs\Exceptions\ParseException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -61,5 +65,6 @@
     <Folder Include="Stebs\Opcodes\" />
     <Folder Include="Stebs\Operations\" />
     <Folder Include="Stebs\Compiler\" />
+    <Folder Include="Stebs\Exceptions\" />
   </ItemGroup>
 </Project>
