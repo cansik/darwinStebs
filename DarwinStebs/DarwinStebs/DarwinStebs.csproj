@@ -58,6 +58,10 @@
     <Compile Include="Stebs\Compiler\Tokenizer.cs" />
     <Compile Include="Stebs\Compiler\Token.cs" />
     <Compile Include="Stebs\Exceptions\ParseException.cs" />
+    <Compile Include="Stebs\Operations\ROL.cs" />
+    <Compile Include="Stebs\Operations\ROR.cs" />
+    <Compile Include="Stebs\Operations\SHR.cs" />
+    <Compile Include="Stebs\Operations\SHL.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

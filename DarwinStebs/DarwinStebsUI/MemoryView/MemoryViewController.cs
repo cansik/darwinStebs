@@ -13,7 +13,7 @@ namespace DarwinStebsUI
 	{
 		public Memory Memory { get; set;}
 
-		List<List<MemoryViewItemController>> Items{ get; set;}
+		public List<List<MemoryViewItemController>> Items{ get; set;}
 
 		#region Constructors
 
