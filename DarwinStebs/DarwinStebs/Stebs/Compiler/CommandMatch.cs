@@ -1,31 +1,45 @@
 ﻿using System;
-using System.Text.RegularExpressions;
+using System.Collections.Specialized;
+using System.Collections.ObjectModel;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 
 namespace DarwinStebs
 {
 	public class CommandMatch
 	{
-		public GroupCollection Groups{ get; set; }
+		public byte opCode { get; set; }
+		public string name { get; set; }
+		public List<CommandParameter> parameters { get; set; } 
 
-		public CommandMatch(GroupCollection groups)
+		public CommandMatch(byte opCode, string name)
 		{
-			this.Groups = groups;
+			this.opCode = opCode;
+			this.name = name;
+			this.parameters = new List<CommandParameter>();
 		}
 
-		public bool IsParamRegister (int param)
+		public CommandMatch(byte opCode, string name, string param1) : this(opCode, name)
 		{
-			return (Groups [param].Success && Regex.Match (Groups [param].Value, @"\w{2}").Success);
+			parameters.Add(new CommandParameter(param1));
 		}
 
-		public bool IsParamConstant (int param)
+		public CommandMatch(byte opCode, string name, string param1, string param2) : this(opCode, name, param1)
 		{
-			return (Groups [param].Success && Regex.Match (Groups [param].Value, @"\d{2}").Success);
+			parameters.Add(new CommandParameter(param2));
 		}
 
-		public bool IsParamAddress (int param)
+		public void writeToMemory (Memory memory, byte instructionPointer)  
 		{
-			return (Groups [param].Success && Regex.Match (Groups [param].Value, @"\[[\w\d]{2}\]").Success);
+			memory.Write (instructionPointer++, opCode);
+
+			if (parameters.Count > 0)
+				memory.Write (instructionPointer++, parameters[0].value);
+
+			if (parameters.Count > 1)
+				memory.Write (instructionPointer++, parameters[1].value);
 		}
+
 	}
 }
 

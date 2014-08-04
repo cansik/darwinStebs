@@ -11,12 +11,15 @@ namespace DarwinStebs
 		private string sourceCode;
 		private DecoderTable decoder = new DecoderTable();
 		private List<Token> tokenTree = new List<Token> (); 
+		public byte instructionPointer { get; set; }
 
 		public Tokenizer (string sourceCode)
 		{
+			instructionPointer = new byte ();
 			this.sourceCode = sourceCode;
 		}
 
+		//TODO: Ecpected "END" at the end of code
 		public void tokenize () 
 		{
 			sourceCode = stripIrrelevantCode (sourceCode);
@@ -30,7 +33,8 @@ namespace DarwinStebs
 		public void writeToMemory(Memory memory) 
 		{
 			foreach (var token in tokenTree) {
-				token.writeTokenToMemory (memory);
+				token.writeTokenToMemory (memory, instructionPointer);
+				instructionPointer += token.getInstructionLength ();
 			}
 		}
 

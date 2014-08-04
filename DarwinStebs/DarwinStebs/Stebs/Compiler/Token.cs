@@ -6,42 +6,45 @@ namespace DarwinStebs
 {
 	public class Token
 	{
-		private ASMOperation asmOperation;
+		private CommandMatch command;
 		private char[] delimiters;
 		private DecoderTable decoder;
-		private int MAX_ARGUMENTS = 3;
+		private const int MAX_ARGUMENTS = 3;
 
 		public Token (String lineOfCode, char[] delimiters, DecoderTable decoder)
 		{
 			this.delimiters 	= delimiters;
 			this.decoder 		= decoder;
-			this.asmOperation 	= this.createASMOperationFromString (lineOfCode);
+			this.command 		= this.createCommandFromString (lineOfCode);
 		}
 
-		private ASMOperation createASMOperationFromString(String lineOfCode) 
+		private CommandMatch createCommandFromString(String lineOfCode) 
 		{
+			CommandMatch commandMatch = null;
 			var commandSequence = getValidCommandSequence (lineOfCode);
 			if ( commandSequence.Length == 0 ) return null;
-			var op = new ASMOperation ();
-			op.Name = commandSequence [0];
 
-			if ( commandSequence.Length > 1 ) {
-				op.Parameter = new List<ASMParameterType> ();
-				op.Parameter.Add ( getParamType(commandSequence [1]) );
+			var opTest = new ASMOperation ();
+			opTest.Name = commandSequence [0];
+
+			if ( commandSequence.Length > 1 ) opTest.Parameter.Add ( CommandParameter.getParamType(commandSequence [1]) );
+			if ( commandSequence.Length > 2 ) opTest.Parameter.Add ( CommandParameter.getParamType(commandSequence [2]) );
+
+			if( !decoder.CommandMatchExists(opTest) ) throw new ParseException ("invalid command " + lineOfCode);
+
+			var match = decoder.GetCommandMatch (opTest);
+
+			if ( commandSequence.Length == 1 ) {
+				commandMatch = new CommandMatch (match.OpCode, match.Name);
+			} else if ( commandSequence.Length == 2 ) {
+				commandMatch = new CommandMatch (match.OpCode, match.Name, commandSequence [1]);
+			} else if ( commandSequence.Length == 3 ) {
+				commandMatch = new CommandMatch (match.OpCode, match.Name, commandSequence [1], commandSequence [2]);
 			}
 
-			if ( commandSequence.Length > 2 ) 
-				op.Parameter.Add ( getParamType(commandSequence [2]) );
-
-			if(decoder.CommandMatchExists(op)) {
-				var match = decoder.GetCommandMatch (op);
-			} else {
-				throw new ParseException ("invalid command" + lineOfCode);
-			}
-
-			return op;
+			return commandMatch;
 		}
-
+			
 		private String[] getValidCommandSequence (String lineOfCode) 
 		{
 			var commandSequence = lineOfCode.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
@@ -54,22 +57,20 @@ namespace DarwinStebs
 			return commandSequence;
 		}
 
-		public ASMParameterType getParamType(String param) 
+		public void writeTokenToMemory(Memory memory, byte instructionPointer) 
 		{
-			if ( Regex.Match (param, @"\w{2}\b").Success /* && is allowed register */) {
-				return ASMParameterType.Register;
-			} else if ( Regex.Match (param, @"\d{2}\b").Success /* && is allowed constant */) {
-				return ASMParameterType.Constant;
-			} else if ( Regex.Match (param, @"\[[\w\d]{2}\]\b").Success /* && is allowed address */) {
-				return ASMParameterType.Address;
-			} else {
-				throw new ParseException ("Param '" + param + "' does not match an address, constant or a register.");
+			if ( command is CommandMatch ) {
+				command.writeToMemory (memory, instructionPointer);
 			}
 		}
 
-		public void writeTokenToMemory(Memory memory) 
+		//TODO: make memory internal instruction pointer with auto increment ??
+		public byte getInstructionLength() 
 		{
-			
+			if (command == null)
+				return new byte ();
+
+			return BitConverter.GetBytes(1 + command.parameters.Count)[0];
 		}
 
 	}

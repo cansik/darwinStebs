@@ -11,9 +11,9 @@ namespace DarwinStebs
 
 			StringBuilder asmSourceCode = new StringBuilder ();
 
-			asmSourceCode.AppendLine ("MOV 50,50");
-			asmSourceCode.AppendLine ("MOV AL,6230 ;just a comment");
-			asmSourceCode.AppendLine ("MOV AL,70");
+			asmSourceCode.AppendLine ("MOV AL,0F");
+			asmSourceCode.AppendLine ("MOV BL,50 ;just a comment");
+			asmSourceCode.AppendLine ("ADD AL,BL");
 
 			var compilerMemory = new Memory (0xF, 0xF);
 			var compiler = new StebsCompiler (compilerMemory);

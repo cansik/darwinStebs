@@ -7,6 +7,8 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>DarwinStebs</RootNamespace>
     <AssemblyName>DarwinStebs</AssemblyName>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,8 +44,6 @@
     <Compile Include="Stebs\Opcodes\DecoderTable.cs" />
     <Compile Include="Stebs\Operations\MOV.cs" />
     <Compile Include="Stebs\Operations\BaseOperation.cs" />
-    <Compile Include="Stebs\Compiler\CommandMatch.cs" />
-    <Compile Include="Stebs\Compiler\StebsCompiler.cs" />
     <Compile Include="Stebs\Operations\INC.cs" />
     <Compile Include="Stebs\Operations\DEC.cs" />
     <Compile Include="Stebs\Operations\HALT.cs" />
@@ -55,13 +55,16 @@
     <Compile Include="Stebs\Operations\JZ.cs" />
     <Compile Include="Stebs\AddressPoint.cs" />
     <Compile Include="Stebs\Exceptions\CompilerException.cs" />
-    <Compile Include="Stebs\Compiler\Tokenizer.cs" />
-    <Compile Include="Stebs\Compiler\Token.cs" />
     <Compile Include="Stebs\Exceptions\ParseException.cs" />
     <Compile Include="Stebs\Operations\ROL.cs" />
     <Compile Include="Stebs\Operations\ROR.cs" />
     <Compile Include="Stebs\Operations\SHR.cs" />
     <Compile Include="Stebs\Operations\SHL.cs" />
+    <Compile Include="Stebs\Compiler\CommandMatch.cs" />
+    <Compile Include="Stebs\Compiler\StebsCompiler.cs" />
+    <Compile Include="Stebs\Compiler\Token.cs" />
+    <Compile Include="Stebs\Compiler\Tokenizer.cs" />
+    <Compile Include="Stebs\Compiler\CommandParameter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
