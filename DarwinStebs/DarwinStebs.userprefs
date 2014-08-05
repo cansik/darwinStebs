@@ -1,4 +1,4 @@
-﻿<Properties MonoDevelop.MonoMac.LastXamMacNagTime="7/14/2014 10:18:46 PM">
+﻿<Properties MonoDevelop.MonoMac.LastXamMacNagTime="8/5/2014 9:06:11 PM">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="DarwinStebsUI/MainWindowController.cs">
     <Files>
@@ -22,7 +22,7 @@
       <File FileName="DarwinStebs/Stebs/StatusRegister.cs" Line="1" Column="1" />
       <File FileName="DarwinStebs/Stebs/Operations/JNZ.cs" Line="1" Column="1" />
       <File FileName="DarwinStebs/Stebs/Operations/JZ.cs" Line="1" Column="1" />
-      <File FileName="DarwinStebsUI/MainWindowController.cs" Line="29" Column="29" />
+      <File FileName="DarwinStebsUI/MainWindowController.cs" Line="5" Column="5" />
       <File FileName="DarwinStebsUI/DataSources/MemoryDataSource.cs" Line="1" Column="1" />
       <File FileName="DarwinStebsUI/DataSources/RegisterDataSource.cs" Line="1" Column="1" />
       <File FileName="DarwinStebs/Stebs/AddressPoint.cs" Line="1" Column="1" />
@@ -31,8 +31,10 @@
       <File FileName="DarwinStebsUI/MemoryView/MemoryViewController.cs" Line="1" Column="1" />
       <File FileName="DarwinStebsUI/MemoryView/MemoryViewItem/MemoryViewItem.cs" Line="1" Column="1" />
       <File FileName="DarwinStebsUI/MemoryView/MemoryViewItem/MemoryViewItemController.cs" Line="1" Column="1" />
-      <File FileName="DarwinStebs/Stebs/Operations/ROL.cs" Line="4" Column="4" />
-      <File FileName="DarwinStebs/Stebs/Operations/ROR.cs" Line="2" Column="2" />
+      <File FileName="DarwinStebs/Stebs/Operations/ROL.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Operations/ROR.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Operations/SHR.cs" Line="1" Column="1" />
+      <File FileName="DarwinStebs/Stebs/Operations/SHL.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
