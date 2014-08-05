@@ -16,10 +16,16 @@ namespace DarwinStebsUI
 		MonoMac.AppKit.NSTextField statusLabel { get; set; }
 
 		[Outlet]
+		MonoMac.AppKit.NSTextField textCode { get; set; }
+
+		[Outlet]
 		MonoMac.AppKit.NSTableView tvMemoryView { get; set; }
 
 		[Outlet]
 		MonoMac.AppKit.NSTableView tvRegisterView { get; set; }
+
+		[Action ("btnCompileClicked:")]
+		partial void btnCompileClicked (MonoMac.Foundation.NSObject sender);
 
 		[Action ("btnReset_Clicked:")]
 		partial void btnReset_Clicked (MonoMac.AppKit.NSButton sender);
@@ -29,11 +35,6 @@ namespace DarwinStebsUI
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (tvRegisterView != null) {
-				tvRegisterView.Dispose ();
-				tvRegisterView = null;
-			}
-
 			if (statusLabel != null) {
 				statusLabel.Dispose ();
 				statusLabel = null;
@@ -42,6 +43,16 @@ namespace DarwinStebsUI
 			if (tvMemoryView != null) {
 				tvMemoryView.Dispose ();
 				tvMemoryView = null;
+			}
+
+			if (tvRegisterView != null) {
+				tvRegisterView.Dispose ();
+				tvRegisterView = null;
+			}
+
+			if (textCode != null) {
+				textCode.Dispose ();
+				textCode = null;
 			}
 		}
 	}

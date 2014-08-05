@@ -123,6 +123,7 @@ namespace DarwinStebsUI
 		public void InitGui()
 		{
 			memoryView = new NSColorableTableView ();
+
 			//tvMemoryView.PreviousKeyView.ReplaceSubviewWith (tvMemoryView, memoryView);
 
 			memControl = new MemoryViewController ();
@@ -231,6 +232,11 @@ namespace DarwinStebsUI
 
 			return false;
 		}
+
+		partial void btnCompileClicked (NSObject sender)
+		{
+			textCode.StringValue = "hello markus";
+		} 
 	}
 }
 
