@@ -67,6 +67,24 @@ namespace DarwinStebs
 		{
 			return this.Single (o => o.OpCode.Equals (opcode));
 		}
+
+		public ASMOperation GetCommandMatch(ASMOperation command)
+		{
+			return this.Single (
+				o => o.Name.Equals (command.Name) 
+				&& o.Parameter[0].Equals (command.Parameter[0])
+				&& o.Parameter[1].Equals (command.Parameter[1])
+			);
+		}
+
+		public bool CommandMatchExists(ASMOperation command)
+		{
+			return this.Exists (
+				o => o.Name.Equals (command.Name) 
+				&& o.Parameter[0].Equals (command.Parameter[0])
+				&& o.Parameter[1].Equals (command.Parameter[1])
+			);
+		}
 	}
 }
 

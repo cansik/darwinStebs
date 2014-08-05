@@ -1,4 +1,4 @@
-﻿<Properties MonoDevelop.MonoMac.LastXamMacNagTime="8/5/2014 9:06:11 PM">
+<Properties MonoDevelop.MonoMac.LastXamMacNagTime="8/5/2014 9:06:11 PM">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="DarwinStebsUI/MainWindowController.cs">
     <Files>
@@ -40,7 +40,8 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
-    <Watch file="DarwinStebs/Stebs/Memory.cs" line="36" offsetX="291" offsetY="525" expression="data" liveUpdate="False" />
-  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>DarwinStebsUI/DarwinStebsUI.csproj</String>
+  </DisabledProjects>
 </Properties>
