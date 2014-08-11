@@ -6,16 +6,17 @@ namespace DarwinStebs
 {
 	public class StebsCompiler
 	{
-		private Memory memory;
 		private Tokenizer tokenizer;
-		private bool success { get; set; }
+		public Memory memory { get; set; }
+		public bool success { get; set; }
+		public String statusMessage { get; set; }
 
 		public StebsCompiler (Memory memory)
 		{
 			this.memory = memory;
 		}
 
-		public Memory Parse(string sourceCode)
+		public void Parse(string sourceCode)
 		{
 			try {
 				tokenizer = new Tokenizer(sourceCode);
@@ -24,15 +25,14 @@ namespace DarwinStebs
 				tokenizer.writeToMemory(memory);
 
 				success = true;
+				statusMessage = "Success";
 			} catch(ParseException e) {
 				success = false;
-				Console.WriteLine ("ParseError on line " + tokenizer.codeLine + ": " + e.Message);
+				statusMessage = "ParseError on line " + tokenizer.codeLine + ": " + e.Message;
 			} catch(CompilerException e) {
 				success = false;
-				Console.WriteLine ("CompilerError: " + e.Message);
+				statusMessage = "CompilerError: " + e.Message;
 			}
-
-			return memory;
 		}
 	}
 }

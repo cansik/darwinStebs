@@ -19,6 +19,9 @@ namespace DarwinStebsUI
 
 		MemoryViewController memControl;
 
+		StebsCompiler compiler;
+		Memory compilerMemory;
+
 		#region Constructors
 
 		// Called when created from unmanaged code
@@ -62,6 +65,8 @@ namespace DarwinStebsUI
 			InitDarwinStebs ();
 
 			InitGui ();
+
+			InitCompiler ();
 		}
 
 		public void InitDarwinStebs()
@@ -161,6 +166,12 @@ namespace DarwinStebsUI
 			memControl.UpdateData();
 		}
 
+		public void InitCompiler()
+		{
+			compilerMemory = new Memory ();
+			compiler = new StebsCompiler (compilerMemory);
+		}
+
 		public void UpdateTableViews()
 		{
 			tvRegisterView.ReloadData ();
@@ -235,7 +246,32 @@ namespace DarwinStebsUI
 
 		partial void btnCompileClicked (NSObject sender)
 		{
-			textCode.StringValue = "hello markus";
+			/** sample code
+			  	MOV AL,0F
+				MOV BL,50 ;just a comment");
+				ADD AL,BL
+			 */
+
+			compiler.Parse(textCode.StringValue);
+			compileStatusLabel.StringValue = compiler.statusMessage;
+
+			if ( compiler.success ) {
+				compileStatusLabel.TextColor = NSColor.Green;
+
+				/*TODO: <figure out what is really needed and simplify> */
+				memory = compiler.memory;
+				memControl.Memory = memory;
+				cpu.DefaultMemory = memory;
+
+				UpdateTableViews();
+				memControl.UpdateData();
+				/*TODO: </figure out what is really needed and simplify> */
+			} else {
+				compileStatusLabel.TextColor = NSColor.Red;
+
+				InitDarwinStebs();
+				InitCompiler();
+			}
 		} 
 	}
 }

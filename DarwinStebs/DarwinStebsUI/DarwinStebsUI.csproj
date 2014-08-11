@@ -102,10 +102,10 @@
     <InterfaceDefinition Include="MemoryView\MemoryView.xib" />
     <InterfaceDefinition Include="MemoryView\MemoryViewItem\MemoryViewItem.xib" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Info.plist" />
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <BundleResource Include="Info.plist" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DarwinStebs\DarwinStebs.csproj">
       <Project>{7C9CF3FB-DCE2-4578-B803-96AC004BF35B}</Project>

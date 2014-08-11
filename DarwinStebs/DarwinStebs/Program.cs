@@ -18,8 +18,8 @@ namespace DarwinStebs
 			var compilerMemory = new Memory (0xF, 0xF);
 			var compiler = new StebsCompiler (compilerMemory);
 
-			var newMem = compiler.Parse (asmSourceCode.ToString());
-
+			compiler.Parse (asmSourceCode.ToString());
+			var newMem = compiler.memory;
 
 			//setup cpu
 			var mem = new Memory ();
