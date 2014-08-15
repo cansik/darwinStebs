@@ -252,7 +252,7 @@ namespace DarwinStebsUI
 				ADD AL,BL
 			 */
 
-			compiler.Parse(textCode.StringValue);
+			compiler.Parse(sourceCodeField.Value);
 			compileStatusLabel.StringValue = compiler.statusMessage;
 
 			if ( compiler.success ) {
